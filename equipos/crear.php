@@ -2,6 +2,16 @@
 include '../includes/conexion.php';
 /** @var mysqli $conn */
 
+session_start();
+
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../login.php");
+    exit();
+}
+
+include '../includes/conexion.php';
+// resto del código...
+
 // Verificar si el formulario ha sido enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Sanitizar la entrada del usuario

@@ -2,6 +2,15 @@
 include '../includes/conexion.php';
 /** @var mysqli $conn */
 
+session_start();
+
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../login.php");
+    exit();
+}
+
+include '../includes/conexion.php';
+
 // Validar que exista el ID en la URL
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = mysqli_real_escape_string($conn, $_GET['id']);
